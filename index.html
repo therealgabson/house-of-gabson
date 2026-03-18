@@ -907,6 +907,21 @@ function renderTimeSlots(){
     box.appendChild(btn);
   });
 }
+  function saveBookingOnline(name, phone, email, note, date, time) {
+  const bookingId = Date.now().toString();
+
+  db.ref("bookings/" + bookingId).set({
+    name: name,
+    phone: phone,
+    email: email,
+    note: note,
+    date: date,
+    time: time,
+    createdAt: new Date().toISOString()
+  });
+
+  db.ref("blockedSlots/" + date + "/" + time).set(true);
+}
 function sendToWhatsApp(){
   const name = document.getElementById("customerName").value.trim();
   const phone = document.getElementById("customerPhone").value.trim();
@@ -925,6 +940,7 @@ if(missing.length > 0){
   alert("Kindly complete the following:\n\n" + missing.join("\n"));
   return;
 }
+  saveBookingOnline(name, phone, email, note, selectedDate, selectedTime);
 
   const selectedText = document.getElementById("summarySelected").textContent.trim();
   const extrasText = document.getElementById("summaryExtras").textContent.trim();
