@@ -1124,7 +1124,14 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 
 const db = firebase.database();
-</script>
+  function loadServicesFromFirebase() {
+  db.ref("services").on("value", function(snapshot) {
+    const services = snapshot.val();
+    console.log("Firebase services:", services);
+  });
+}
+
+loadServicesFromFirebase();
 </script>
 </body>
 </html>
