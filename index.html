@@ -1,0 +1,1113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>House Of Gabson</title>
+<style>
+:root{
+  --bg:#f4efec;
+  --panel:#ebe3df;
+  --card:#ffffff;
+  --line:#e4d7d1;
+  --text:#2d2421;
+  --muted:#6f6662;
+  --accent:#d8b0a3;
+  --soft:#f8f2ef;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  font-family:Arial,Helvetica,sans-serif;
+  background:var(--bg);
+  color:var(--text);
+}
+.page{
+  max-width:760px;
+  margin:0 auto;
+  min-height:100vh;
+  background:linear-gradient(180deg,#f5f0ed,#efe8e5);
+}
+.topbar{
+  position:sticky;
+  top:0;
+  z-index:10;
+  background:rgba(244,239,236,.94);
+  backdrop-filter:blur(6px);
+  border-bottom:1px solid var(--line);
+  padding:10px 16px;
+  text-align:right;
+}
+.topbar a{
+  display:inline-block;
+  text-decoration:none;
+  background:var(--accent);
+  color:#fff;
+  padding:11px 16px;
+  border-radius:14px;
+  font-weight:700;
+}
+.hero{
+  position:relative;
+  height:320px;
+  overflow:hidden;
+  background:
+  linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)),
+  url("https://i.postimg.cc/6pgWVWVY/IMG-20260317-WA0015.jpg") center/cover no-repeat;
+  animation: heroSlide 12s infinite;
+}
+   
+.hero-inner{
+  position:relative;
+  z-index:1;
+  height:100%;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding:20px;
+}
+.logo{
+  width:450px  !important;
+  display:block;
+  margin:0 auto;
+  transform: translateX(-40px);
+  filter: brightness(1.5) contrast(1.2);
+}
+.tagline{
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:15px;
+  letter-spacing:1.2px;
+  color:#ffffff;
+}
+.section{padding:8px}
+.panel{
+  background:var(--panel);
+  border:1px solid var(--line);
+  border-radius:18px;
+  padding:8px;
+  box-shadow:0 6px 18px rgba(0,0,0,.04);
+}
+.center-title{
+  text-align:center;
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:24px;
+  font-weight:400;
+  margin:0 0 14px;
+  color:#453833;
+}
+.info-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:10px;
+}
+.mini-card{
+  background:#f7f2ef;
+  border-radius:16px;
+  padding:14px 12px;
+  text-align:center;
+  box-shadow:0 2px 8px rgba(0,0,0,.03);
+}
+.mini-icon{font-size:24px;line-height:1;margin-bottom:8px;color:#4d413d}
+.mini-title{font-size:11px;letter-spacing:1.4px;font-weight:700;margin-bottom:6px}
+.mini-text{font-size:12px;color:var(--muted);line-height:1.45}
+.policy-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:12px;
+}
+.policy-card{
+  background:#fbf9f8;
+  border-radius:26px 26px 0 0;
+  padding:18px 12px;
+  text-align:center;
+  min-height:190px;
+  box-shadow:0 3px 10px rgba(0,0,0,.03);
+}
+.policy-icon{font-size:34px;margin-bottom:8px}
+.policy-title{font-size:11px;letter-spacing:2px;font-weight:700;margin-bottom:8px}
+.policy-text{font-size:11px;line-height:1.45;color:var(--muted)}
+.split-2{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:16px;
+}
+.box{
+  background:#f7f2ef;
+  min-height:170px;
+  padding:22px 18px;
+  border-radius:16px;
+  box-shadow:0 3px 10px rgba(0,0,0,.03);
+}
+.box-title{
+  text-align:center;
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:22px;
+  font-weight:400;
+  margin:0 0 16px;
+}
+.box p{
+  margin:0;
+  line-height:1.75;
+  color:var(--muted);
+  text-align:center;
+}
+.services-wrap{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:16px;
+}
+.card{
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:16px;
+  padding:16px;
+  box-shadow:0 4px 12px rgba(0,0,0,.03);
+}
+.pill-group{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  margin-bottom:14px;
+}
+.pill{
+  border:1px solid #dbc8c1;
+  background:#fff;
+  color:#6f6662;
+  border-radius:999px;
+  padding:10px 14px;
+  cursor:pointer;
+  font-size:14px;
+  transition:.18s ease;
+}
+.pill.active{
+  background:var(--accent);
+  border-color:var(--accent);
+  color:#fff;
+}
+.copy{
+  font-size:14px;
+  line-height:1.6;
+  color:var(--muted);
+}
+.addons-card,.summary-card,.check-card,.form-card,.calendar-card{
+  margin-top:14px;
+  background:#fbf8f7;
+  border:1px solid var(--line);
+  border-radius:14px;
+  padding:14px;
+}
+.addons-title{
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:18px;
+  font-weight:400;
+  margin:0 0 10px;
+}
+.addon-row{
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
+  padding:8px 0;
+  border-bottom:1px solid #eadfd9;
+  font-size:14px;
+  color:var(--muted);
+}
+.addon-row:last-child{border-bottom:none}
+.summary-row{
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
+  margin-bottom:8px;
+  font-size:14px;
+}
+.summary-row:last-child{margin-bottom:0}
+.field{margin-top:12px}
+.field label{
+  display:block;
+  margin-bottom:6px;
+  font-size:14px;
+  color:var(--muted);
+}
+.field input,.field textarea,.field select{
+  width:100%;
+  padding:12px;
+  border:1px solid var(--line);
+  border-radius:12px;
+  background:#fff;
+}
+.check-item{
+  display:flex;
+  gap:10px;
+  align-items:flex-start;
+  font-size:14px;
+  color:var(--muted);
+  margin-bottom:10px;
+}
+.check-item:last-child{margin-bottom:0}
+.note{
+  margin-top:10px;
+  font-size:13px;
+  color:var(--muted);
+}
+.book-btn{
+  display:inline-block;
+  width:100%;
+  margin-top:14px;
+  background:#b8735a;
+  color:#fff;
+  border:none;
+  border-radius:14px;
+  padding:12px 18px;
+  font-weight:700;
+  cursor:pointer;
+}
+.calendar-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:10px;
+}
+.calendar-head button{
+  border:1px solid var(--line);
+  background:#fff;
+  border-radius:10px;
+  padding:8px 12px;
+  cursor:pointer;
+}
+.weekdays,.calendar-grid{
+  display:grid;
+  grid-template-columns:repeat(7,1fr);
+  gap:6px;
+}
+.weekdays div{
+  text-align:center;
+  font-size:12px;
+  color:var(--muted);
+  padding:4px 0;
+}
+.cal-day{
+  min-height:44px;
+  border:1px solid var(--line);
+  background:#fff;
+  border-radius:10px;
+  cursor:pointer;
+  font-size:13px;
+}
+.cal-day.disabled{
+  opacity:.35;
+  cursor:not-allowed;
+}
+.cal-day.selected{
+  background:var(--accent);
+  border-color:var(--accent);
+  color:#fff;
+}
+.slot-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:8px;
+  margin-top:10px;
+}
+.slot-btn{
+  border:1px solid var(--line);
+  background:#fff;
+  border-radius:10px;
+  padding:12px;
+  cursor:pointer;
+  text-align:center;
+}
+.slot-btn.selected{
+  background:var(--accent);
+  border-color:var(--accent);
+  color:#fff;
+}
+
+.admin-panel{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:#fff;
+  z-index:30;
+  overflow:auto;
+  padding:18px;
+}
+.admin-card{
+  border:1px solid var(--line);
+  border-radius:14px;
+  padding:14px;
+  margin-bottom:12px;
+}
+.admin-list-item{
+  border:1px solid var(--line);
+  border-radius:12px;
+  padding:10px;
+  margin-bottom:10px;
+}
+.small-btn{
+  border:1px solid var(--line);
+  background:#fff;
+  border-radius:10px;
+  padding:8px 10px;
+  cursor:pointer;
+  margin-right:8px;
+}
+@media (max-width:620px){
+  .hero{height:auto}
+  .logo{width:min(94%,470px)}
+  .info-grid{grid-template-columns:repeat(2,1fr)}
+  .policy-grid{grid-template-columns:repeat(2,1fr)}
+  .split-2,.services-wrap{grid-template-columns:1fr}
+body{
+  margin:0;
+}
+.hero{
+  padding:30px;
+  margin:0;
+
+  animation: heroSlide 18s infinite;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.hero-brand{
+  padding:0;
+  margin:0;
+}
+.hero + .section{
+  margin-top:0;
+  padding-top:0;
+}
+.section{
+  margin:0;
+  padding:0;
+}
+}
+.panel{
+  margin:0;
+  padding:0;
+
+}
+h2{
+  margin-top:0;
+}
+.center-title{
+  margin-top:0;
+}
+.logo{
+  width:120px;
+  height:auto;
+}
+
+.hero-brand{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+}
+.hero-img{
+  width:100%;
+  display:block;
+}
+.topbar a{
+  background:#b8735a;
+  color:#fff;
+  font-weight:700;
+  padding:10px 18px;
+  border-radius:12px;
+  text-decoration:none;
+}@keyframes heroSlide {
+
+  0%{
+    background-image:
+      linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)),
+      url("https://i.postimg.cc/768KpZTT/IMG-3828.avif");
+  }
+
+  25%{
+    background-image:
+      linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)),
+      url("https://i.postimg.cc/3NW01gJP/IMG-20260317-WA0084.jpg");
+  }
+
+  50%{
+    background-image:
+      linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)),
+      url("https://i.postimg.cc/mk6CWm6d/IMG-20260318-WA0004.jpg");
+  }
+
+  75%{
+    background-image:
+      linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)),
+      url("https://i.postimg.cc/GpYWBNFS/IMG-8880.avif");
+  }
+
+  100%{
+    background-image:
+      linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)),
+      url("https://i.postimg.cc/3NW01gJP/IMG-20260317-WA0084.jpg");
+  }
+
+}
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="topbar"><a href="#services">Book Now</a></div>
+
+  <section class="hero">
+    
+      <div class="hero-brand">
+        <img class="logo" src="https://i.postimg.cc/VLF7rw0p/108435-removebg-preview.png" alt="House Of Gabson logo">
+        <div class="tagline">LUXURY BRAIDING EXPERIENCE</div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="panel">
+      <h2 class="center-title">THINGS TO KNOW BEFORE YOUR APPOINTMENT</h2>
+      <div class="info-grid">
+        <div class="mini-card"><div class="mini-icon">✓</div><div class="mini-title">ARRIVE ON TIME</div><div class="mini-text">Arriving a few minutes early ensures you get the full time allotted for your service.</div></div>
+        <div class="mini-card"><div class="mini-icon">✓</div><div class="mini-title">KNOW WHAT YOU WANT</div><div class="mini-text">A clear idea of the look you want helps communicate your vision.</div></div>
+        <div class="mini-card"><div class="mini-icon">✓</div><div class="mini-title">HAIR PREP</div><div class="mini-text">Ensure your hair is washed, free of oils or products, and properly blow-dried straight for the best results.</div></div>
+        <div class="mini-card"><div class="mini-icon">✓</div><div class="mini-title">DISCUSS YOUR HAIR</div><div class="mini-text">Let us know about scalp issues or treatments before your appointment.</div></div>
+        <div class="mini-card"><div class="mini-icon">✓</div><div class="mini-title">EXTRA</div><div class="mini-text">Please come without extra guests or children unless arranged.</div></div>
+        <div class="mini-card"><div class="mini-icon">✓</div><div class="mini-title">PARKING</div><div class="mini-text">There is parking outside if you are driving from far.</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="panel">
+      <h2 class="center-title">BOOKING POLICIES</h2>
+      <div class="policy-grid">
+        <div class="policy-card"><div class="policy-icon">🗓️</div><div class="policy-title">APPOINTMENTS</div><div class="policy-text">Deposits go toward your total service price.</div></div>
+        <div class="policy-card"><div class="policy-icon">💷</div><div class="policy-title">BALANCE</div><div class="policy-text">Remaining balance is due at the end of your appointment.</div></div>
+        <div class="policy-card"><div class="policy-icon">✓</div><div class="policy-title">DEPOSIT</div><div class="policy-text">Appointments without a deposit will not be confirmed.</div></div>
+        <div class="policy-card"><div class="policy-icon">✕</div><div class="policy-title">CANCELLATIONS</div><div class="policy-text">Same-day cancellations or no-shows will result in loss of deposit and may require full payment for future bookings.</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="split-2">
+      <div class="box">
+        <h3 class="box-title">HOURS</h3>
+        <p>Monday - Saturday<br><b>9:00 AM - 6:00 PM</b><br><br>Hull, UK</p>
+      </div>
+      <div class="box">
+        <h3 class="box-title">CONTACT</h3>
+        <p><b>+44 7463 907828</b><br><br>oluwakemiojo321@gmail.com<br><br>TikTok: <b>@houseofgabson</b></p>
+      </div>
+    </div>
+  </section>
+  <section class="section" id="services">
+    <div class="services-wrap">
+      <div class="card">
+        <h3 class="box-title" style="text-align:left">Select Service</h3>
+        <div class="pill-group" id="categoryPills"></div>
+        <div class="pill-group" id="stylePills"></div>
+        <div class="copy" id="serviceCopy"></div>
+
+        <div class="addons-card">
+          <h4 class="addons-title">Add-Ons</h4>
+          <div id="addonsList"></div>
+        </div>
+
+        <div class="summary-card">
+          <div class="summary-row"><span><b>Selected</b></span><span id="summarySelected">-</span></div>
+          <div class="summary-row"><span><b>Extras</b></span><span id="summaryExtras">None</span></div>
+          <div class="summary-row"><span><b>Total</b></span><span id="summaryTotal">&pound;0</span></div>
+          <div class="summary-row"><span><b>Deposit</b></span><span>&pound;30</span></div>
+          <div class="summary-row"><span><b>Balance</b></span><span id="summaryBalance">&pound;0</span></div>
+        </div>
+
+        <div class="note"><b>Note:</b> Braiding hair is not included unless stated otherwise.</div>
+      </div>
+
+      <div class="card">
+        <h3 class="box-title" style="text-align:left">Terms &amp; Booking</h3>
+        <div class="copy">
+          A 24-hour notice is required prior to cancellation or rescheduling of an appointment.
+          Failure to do so will result in loss of deposit, and a new deposit will be required to secure another slot.
+        </div>
+
+        <div class="check-card">
+          <div class="check-item">☑ <span>A &pound;30 deposit is required to secure booking. Balance due on appointment day.</span></div>
+          <div class="check-item">☑ <span>15-minute grace period.</span></div>
+          <div class="check-item">☑ <span>16–25 minutes late — &pound;10 fee.</span></div>
+          <div class="check-item">☑ <span>26–35 minutes late — &pound;15 fee.</span></div>
+          <div class="check-item">☑ <span>35+ minutes late — appointment cancelled.</span></div>
+        </div>
+
+        <div class="calendar-card">
+          <div class="field" style="margin-top:0">
+            <label>Preferred Date</label>
+          </div>
+          <div class="calendar-head">
+            <button type="button" onclick="changeMonth(-1)">‹</button>
+            <strong id="calendarMonthLabel"></strong>
+            <button type="button" onclick="changeMonth(1)">›</button>
+          </div>
+          <div class="weekdays">
+            <div>Mon</div><div>Tue</div><div>Wed</div><div>Thu</div><div>Fri</div><div>Sat</div><div>Sun</div>
+          </div>
+          <div class="calendar-grid" id="calendarGrid"></div>
+
+          <div class="field">
+            <label>Preferred Time</label>
+            <div class="slot-grid" id="timeSlots"></div>
+          </div>
+        </div>
+
+        <div class="form-card">
+          <div class="field" style="margin-top:0">
+            <label>Full Name</label>
+            <input id="customerName" type="text">
+          </div>
+          <div class="field">
+            <label>Phone Number</label>
+            <input id="customerPhone" type="text">
+          </div>
+          <div class="field">
+            <label>Email</label>
+            <input id="customerEmail" type="email">
+          </div>
+          <div class="field">
+            <label>Extra Note (optional)</label>
+            <textarea id="customerNote" rows="3"></textarea>
+          </div>
+        </div>
+
+        <button class="book-btn" onclick="sendToWhatsApp()">Book Now</button>
+      </div>
+    </div>
+  </section>
+</div>
+
+
+<div class="admin-panel" id="adminPanel" style="display:none;">
+  <div class="admin-card">
+    <h2 style="margin-top:0">Admin Panel</h2>
+    <button class="small-btn" onclick="closeAdmin()">Close</button>
+  </div>
+
+  <div class="admin-card">
+    <h3 style="margin-top:0">Block Slot / Day</h3>
+    <div class="field">
+      <label>Date</label>
+      <input id="blockDate" type="date">
+    </div>
+    <div class="field">
+      <label>Time</label>
+      <select id="blockTime">
+        <option value="all">Full Day</option>
+        <option value="09:00">09:00</option>
+        <option value="13:00">13:00</option>
+      </select>
+    </div>
+    <button class="small-btn" onclick="blockSlot()">Block</button>
+    <button class="small-btn" onclick="unblockSlot()">Unblock</button>
+    <div id="blockedList" style="margin-top:12px;color:var(--muted)"></div>
+  </div>
+
+  <div class="admin-card">
+    <h3 style="margin-top:0">Saved Bookings</h3>
+    <div id="adminBookings"></div>
+    <button class="small-btn" onclick="clearBookings()">Clear All Bookings</button>
+  </div>
+</div>
+
+<script>
+const DATA = {
+  "Knotless Braids":[
+    {name:"Small",price:75},
+    {name:"Medium",price:65},
+    {name:"Large",price:55},
+    {name:"Jumbo",price:45}
+  ],
+  "Box Braids":[
+    {name:"Small",price:60},
+    {name:"Medium",price:50},
+    {name:"Large",price:40}
+  ],
+  "Stitch Braids":[
+    {name:"6 Stitches",price:30},
+    {name:"8 Stitch Braids",price:40},
+    {name:"Extra Design",price:10}
+  ],
+  "Boho Braids":[
+    {name:"Small",price:75},
+    {name:"Medium",price:65},
+    {name:"Large",price:55}
+  ],
+  "Fulani Braids":[
+    {name:"Price varies",price:0}
+  ]
+};
+
+const ADDONS = [
+  {id:"midback",name:"Mid Back",price:10},
+  {id:"waist",name:"Waist",price:20},
+  {id:"bum",name:"Bum",price:30},
+  {id:"design",name:"Extra Design",price:10},
+  {id:"mix",name:"Color Mix",price:10},
+  {id:"hair",name:"1 Pack of Braiding Hair",price:7}
+];
+
+const BASE_SLOTS = {
+  1:["09:00","13:00"],
+  2:["09:00","13:00"],
+  3:["09:00","13:00"],
+  4:["09:00","13:00"],
+  5:["09:00","13:00"],
+  6:["09:00","13:00"],
+  0:[]
+};
+
+let currentCategory = Object.keys(DATA)[0];
+let currentStyle = DATA[currentCategory][0];
+let selectedAddons = [];
+let currentCalendarDate = new Date();
+currentCalendarDate.setDate(1);
+let selectedDate = "";
+let selectedTime = "";
+function gbp(n){
+  return "&pound;" + Number(n).toFixed(0);
+}
+
+function gbpText(n){
+  return "£" + Number(n).toFixed(0);
+}
+
+function getBookings(){
+  return JSON.parse(localStorage.getItem("hogBookings") || "[]");
+}
+
+function saveBookings(bookings){
+  localStorage.setItem("hogBookings", JSON.stringify(bookings));
+}
+
+function getBlockedSlots(){
+  return JSON.parse(localStorage.getItem("hogBlocked") || "{}");
+}
+
+function saveBlockedSlots(data){
+  localStorage.setItem("hogBlocked", JSON.stringify(data));
+}
+
+function formatDateISO(date){
+  const y = date.getFullYear();
+  const m = String(date.getMonth()+1).padStart(2,"0");
+  const d = String(date.getDate()).padStart(2,"0");
+  return y + "-" + m + "-" + d;
+}
+
+function formatUKDate(dateStr){
+  if(!dateStr) return "";
+  const d = new Date(dateStr);
+  if(isNaN(d)) return dateStr;
+  return d.toLocaleDateString("en-GB",{day:"2-digit",month:"2-digit",year:"numeric"});
+}
+
+function getBookedTimesForDate(dateStr){
+  return getBookings().filter(function(b){ return b.date === dateStr; }).map(function(b){ return b.time; });
+}
+
+function getFreeSlots(dateStr){
+  const d = new Date(dateStr);
+  const weekday = d.getDay();
+  const baseSlots = BASE_SLOTS[weekday] || [];
+  const booked = getBookedTimesForDate(dateStr);
+  const blocked = getBlockedSlots()[dateStr] || [];
+  const taken = booked.concat(blocked);
+  return baseSlots.filter(function(t){ return taken.indexOf(t) === -1; });
+}
+
+function renderCategories(){
+  const box = document.getElementById("categoryPills");
+  box.innerHTML = "";
+  Object.keys(DATA).forEach(function(cat){
+    const el = document.createElement("button");
+    el.className = "pill" + (cat === currentCategory ? " active" : "");
+    el.textContent = cat;
+    el.onclick = function(){
+      currentCategory = cat;
+      currentStyle = DATA[currentCategory][0];
+      selectedAddons = [];
+      renderAll();
+    };
+    box.appendChild(el);
+  });
+}
+
+function renderStyles(){
+  const box = document.getElementById("stylePills");
+  box.innerHTML = "";
+  DATA[currentCategory].forEach(function(style){
+    const label = style.price ? style.name + " (" + gbpText(style.price) + ")" : style.name;
+    const el = document.createElement("button");
+    el.className = "pill" + (style.name === currentStyle.name ? " active" : "");
+    el.textContent = label;
+    el.onclick = function(){
+      currentStyle = style;
+      selectedAddons = [];
+      renderAll();
+    };
+    box.appendChild(el);
+  });
+}
+
+function renderCopy(){
+  const copy = document.getElementById("serviceCopy");
+  if(currentCategory === "Fulani Braids"){
+    copy.innerHTML =
+      "• Price varies depending on the chosen Fulani style.<br>" +
+      "• Please confirm style details before booking.<br>" +
+      "• Add-ons can still be selected below.<br>" +
+      "• Braiding hair is not included.";
+  } else if(currentCategory === "Stitch Braids"){
+    copy.innerHTML =
+      "• Select your preferred stitch style above.<br>" +
+      "• Extra Design is available as an add-on.<br>" +
+      "• Braiding hair is not included.<br>" +
+      "• Please come with clean, product-free hair.";
+  } else {
+    copy.innerHTML =
+      "• Select your preferred size above.<br>" +
+      "• Add-ons are selected below.<br>" +
+      "• Braiding hair is not included.<br>" +
+      "• Please come with clean, product-free hair.";
+  }
+}
+
+function renderAddons(){
+  const box = document.getElementById("addonsList");
+  box.innerHTML = "";
+  ADDONS.forEach(function(addon){
+    const checked = selectedAddons.indexOf(addon.id) !== -1;
+    const row = document.createElement("label");
+    row.className = "addon-row";
+    row.innerHTML =
+      "<span><input type='checkbox' " + (checked ? "checked" : "") + "> " + addon.name + "</span>" +
+      "<span>" + gbp(addon.price) + "</span>";
+    row.querySelector("input").onchange = function(e){
+      if(e.target.checked){
+        if(selectedAddons.indexOf(addon.id) === -1) selectedAddons.push(addon.id);
+      } else {
+        selectedAddons = selectedAddons.filter(function(x){ return x !== addon.id; });
+      }
+      renderAddons();
+      renderSummary();
+    };
+    box.appendChild(row);
+  });
+}
+
+function renderSummary(){
+  const extras = ADDONS.filter(function(a){ return selectedAddons.indexOf(a.id) !== -1; });
+  const extrasTotal = extras.reduce(function(sum, a){ return sum + a.price; }, 0);
+  const base = currentStyle.price || 0;
+  const total = base + extrasTotal;
+  const balance = Math.max(total - 30, 0);
+
+  document.getElementById("summarySelected").textContent =
+    currentCategory + " - " + currentStyle.name + (currentStyle.price ? " (" + gbpText(currentStyle.price) + ")" : "");
+  document.getElementById("summaryExtras").textContent =
+    extras.length ? extras.map(function(x){ return x.name; }).join(", ") : "None";
+  document.getElementById("summaryTotal").innerHTML = gbp(total);
+  document.getElementById("summaryBalance").innerHTML = gbp(balance);
+}
+
+function changeMonth(step){
+  currentCalendarDate.setMonth(currentCalendarDate.getMonth() + step);
+  renderCalendar();
+}
+
+function renderCalendar(){
+  const grid = document.getElementById("calendarGrid");
+  const label = document.getElementById("calendarMonthLabel");
+  grid.innerHTML = "";
+
+  label.textContent = currentCalendarDate.toLocaleDateString("en-GB",{month:"long",year:"numeric"});
+
+  const year = currentCalendarDate.getFullYear();
+  const month = currentCalendarDate.getMonth();
+  const firstDay = new Date(year, month, 1);
+  const daysInMonth = new Date(year, month + 1, 0).getDate();
+
+  let startOffset = firstDay.getDay();
+  startOffset = startOffset === 0 ? 6 : startOffset - 1;
+
+  for(let i=0;i<startOffset;i++){
+    const blank = document.createElement("div");
+    grid.appendChild(blank);
+  }
+
+  const today = new Date();
+  today.setHours(0,0,0,0);
+
+  for(let day=1; day<=daysInMonth; day++){
+    const dateObj = new Date(year, month, day);
+    const iso = formatDateISO(dateObj);
+    const isPast = dateObj < today;
+    const freeSlots = getFreeSlots(iso);
+
+    const btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "cal-day";
+    btn.textContent = day;
+
+    if(isPast || !freeSlots.length){
+      btn.classList.add("disabled");
+    }
+    if(selectedDate === iso){
+      btn.classList.add("selected");
+    }
+
+    btn.onclick = function(){
+      if(isPast || !freeSlots.length) return;
+      selectedDate = iso;
+      selectedTime = "";
+      renderCalendar();
+      renderTimeSlots();
+    };
+
+    grid.appendChild(btn);
+  }
+}
+
+function renderTimeSlots(){
+  const box = document.getElementById("timeSlots");
+  box.innerHTML = "";
+
+  if(!selectedDate){
+    box.innerHTML = "<div style='grid-column:1/-1;color:#777;'>Select a date first.</div>";
+    return;
+  }
+
+  const slots = getFreeSlots(selectedDate);
+
+  if(!slots.length){
+    box.innerHTML = "<div style='grid-column:1/-1;color:#777;'>No time slots available.</div>";
+    return;
+  }
+
+  slots.forEach(function(time){
+    const btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "slot-btn" + (selectedTime === time ? " selected" : "");
+    btn.textContent = time;
+    btn.onclick = function(){
+      selectedTime = time;
+      renderTimeSlots();
+    };
+    box.appendChild(btn);
+  });
+}
+function sendToWhatsApp(){
+  const name = document.getElementById("customerName").value.trim();
+  const phone = document.getElementById("customerPhone").value.trim();
+  const email = document.getElementById("customerEmail").value.trim();
+  const note = document.getElementById("customerNote").value.trim();
+
+  let missing = [];
+
+if(!name) missing.push("Full Name");
+if(!phone) missing.push("Phone Number");
+if(!email) missing.push("Email");
+if(!selectedDate) missing.push("Appointment Date");
+if(!selectedTime) missing.push("Appointment Time");
+
+if(missing.length > 0){
+  alert("Kindly complete the following:\n\n" + missing.join("\n"));
+  return;
+}
+
+  const selectedText = document.getElementById("summarySelected").textContent.trim();
+  const extrasText = document.getElementById("summaryExtras").textContent.trim();
+  const totalText = document.getElementById("summaryTotal").textContent.trim();
+  const cleanExtras = extrasText && extrasText !== "None" ? extrasText : "None";
+  const bookingLine = cleanExtras !== "None" ? selectedText + " (" + cleanExtras + ")" : selectedText;
+
+  const bookings = getBookings();
+  bookings.push({
+    name:name,
+    phone:phone,
+    email:email,
+    note:note,
+    service:selectedText,
+    extras:cleanExtras,
+    date:selectedDate,
+    time:selectedTime,
+    total:totalText
+  });
+  saveBookings(bookings);
+
+  const message =
+`Hello House Of Gabson,
+
+I want to book an appointment.
+
+Name: ${name}
+Phone: ${phone}
+Email: ${email}
+
+Booking: ${bookingLine}
+Date: ${formatUKDate(selectedDate)}
+Time: ${selectedTime}
+
+Total: ${totalText}
+Deposit: £30
+Note: ${note || "None"}`;
+
+  renderCalendar();
+  renderTimeSlots();
+  loadBookings();
+  window.open("https://wa.me/447463907828?text=" + encodeURIComponent(message), "_blank");
+}
+
+function openAdmin(){
+  const pass = prompt("Enter admin password:");
+  if(pass !== "gabson123") return;
+  document.getElementById("adminPanel").style.display = "block";
+  loadBookings();
+  loadBlocked();
+}
+
+function closeAdmin(){
+  document.getElementById("adminPanel").style.display = "none";
+}
+
+function loadBookings(){
+  const box = document.getElementById("adminBookings");
+  const bookings = getBookings();
+
+  if(!bookings.length){
+    box.innerHTML = "No bookings yet.";
+    return;
+  }
+
+  box.innerHTML = bookings.map(function(b, i){
+    return "<div class='admin-list-item'>" +
+      "<b>" + b.name + "</b><br>" +
+      b.phone + "<br>" +
+      b.email + "<br>" +
+      b.service + "<br>" +
+      "Extras: " + b.extras + "<br>" +
+      b.date + " - " + b.time + "<br>" +
+      b.total + "<br><br>" +
+      "<button class='small-btn' onclick='deleteBooking(" + i + ")'>Delete</button>" +
+      "</div>";
+  }).join("");
+}
+
+function deleteBooking(index){
+  const bookings = getBookings();
+  bookings.splice(index, 1);
+  saveBookings(bookings);
+  loadBookings();
+  renderCalendar();
+  renderTimeSlots();
+}
+
+function clearBookings(){
+  if(confirm("Clear all bookings?")){
+    localStorage.removeItem("hogBookings");
+    loadBookings();
+    renderCalendar();
+    renderTimeSlots();
+  }
+}
+
+function blockSlot(){
+  const date = document.getElementById("blockDate").value;
+  const time = document.getElementById("blockTime").value;
+
+  if(!date){
+    alert("Select a date");
+    return;
+  }
+
+  const blocked = getBlockedSlots();
+
+  if(!blocked[date]) blocked[date] = [];
+
+  if(time === "all"){
+    blocked[date] = ["09:00","13:00"];
+  } else {
+    if(blocked[date].indexOf(time) === -1) blocked[date].push(time);
+  }
+
+  saveBlockedSlots(blocked);
+  loadBlocked();
+  renderCalendar();
+  renderTimeSlots();
+}
+
+function unblockSlot(){
+  const date = document.getElementById("blockDate").value;
+  const time = document.getElementById("blockTime").value;
+  const blocked = getBlockedSlots();
+
+  if(!blocked[date]) return;
+
+  if(time === "all"){
+    delete blocked[date];
+  } else {
+    blocked[date] = blocked[date].filter(function(t){ return t !== time; });
+    if(!blocked[date].length) delete blocked[date];
+  }
+
+  saveBlockedSlots(blocked);
+  loadBlocked();
+  renderCalendar();
+  renderTimeSlots();
+}
+
+function loadBlocked(){
+  const box = document.getElementById("blockedList");
+  const blocked = getBlockedSlots();
+  let html = "";
+
+  Object.keys(blocked).forEach(function(date){
+    html += "<div style='margin-bottom:8px'>" + date + " → " + blocked[date].join(", ") + "</div>";
+  });
+
+  box.innerHTML = html || "No blocked slots";
+}
+
+function renderAll(){
+  renderCategories();
+  renderStyles();
+  renderCopy();
+  renderAddons();
+  renderSummary();
+  renderCalendar();
+  renderTimeSlots();
+}
+function openAdmin(){
+  let pass = prompt("Enter admin password");
+
+  if(pass === "gabson123"){
+    document.querySelector(".page").style.display = "none";
+    document.getElementById("adminPanel").style.display = "block";
+    loadBookings();
+    loadBlocked();
+  } else {
+    alert("Wrong password");
+    window.location.hash = "";
+  }
+}
+function Oluwakemi_admin(){
+  openAdmin();
+}
+if(window.location.hash === "#admin_gabson"){
+  openAdmin();
+}
+renderAll();
+</script>
+</body>
+</html>
